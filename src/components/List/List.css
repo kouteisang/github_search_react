@@ -1,0 +1,35 @@
+.list-wrapper{
+    width: 1140px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.list-wrapper .item{
+    width: 33%;
+    height: 145px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    float: left;
+    margin: 5px 0.3px;
+    text-align: center;
+}
+
+.list-wrapper .item a{
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 10px auto;
+}
+
+.list-wrapper .item img{
+    width: 100px;
+    height: 100px;
+}
+
+
+.clearfix::before,
+.clearfix::after{
+    content: '';
+    display:table;
+    clear:both;
+}

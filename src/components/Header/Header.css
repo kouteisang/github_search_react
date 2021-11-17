@@ -1,0 +1,38 @@
+.search-container{
+    width: 1140px;
+    height: 180px;
+    background-color: #eee;
+    margin: 0 auto;
+}
+
+.title{
+    margin-top: 73px;
+    margin-left: 50px;
+    font-size: 20px; 
+    font-weight: bold;
+}
+
+.search-area{
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.search-area input{
+    width: 180px;
+    height: 20px;
+}
+
+.search-area button{
+    margin-left: 4px;
+    height: 25px;
+    background-color: skyblue;
+    border: none;
+    cursor: pointer;
+}
+
+.clearfix::before,
+.clearfix::after{
+    content: '';
+    display:table;
+    clear:both;
+}
