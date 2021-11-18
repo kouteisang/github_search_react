@@ -4,23 +4,31 @@ import './List.css'
 export default class List extends Component {
 
     state = {
-        users:[]
+        users:[],
+        isLoading: true,
+        isFirstTime: true,
+        err:''
     }
     componentDidMount(){
-        PubSub.subscribe('userdata',(msg, data)=>{
-            console.log("data = ", data)
+        this.token = PubSub.subscribe('userdata',(msg, data)=>{
+            console.log("datatest = ", data.users)
             this.setState({...data})
         })
         console.log(this.state.users)
     }
-
+    componentWillUnmount(){
+        PubSub.unsubscribe(this.token)
+    }
     render() {
-        console.log("??")
-        const {users} = this.state
+        const {users, isFirstTime,isLoading, err} = this.state
         console.log("users = ", users)
+        console.log('isLoading = ', isLoading)
         return (
             <div className='list-wrapper clearfix'>
             {
+                isFirstTime ? <h2>Welcome! Please enter the username to search!</h2> :
+                isLoading ? <h2>Loading ...</h2> : 
+                err ? <h2>{err}</h2> :
                 users.map((userObj)=>{
                     return (
                         <div key={userObj.id} className='item'>

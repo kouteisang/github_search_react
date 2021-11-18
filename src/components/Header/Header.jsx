@@ -7,6 +7,7 @@ export default class Header extends Component {
 
     getData = ()=>{
         const {inputButton:{value:keyword}} = this
+        PubSub.publish('userdata', {isFirstTime:false, isLoading:true})
         axios({
                 method:'GET',
                 url:'https://api.github.com/search/users',
@@ -16,9 +17,10 @@ export default class Header extends Component {
             }).then(
                 response=>{
                     console.log(response.data.items)
-                    PubSub.publish('userdata', {users:response.data.items})
+                    PubSub.publish('userdata', {users:response.data.items, isLoading:false, isFirstTime:false})
                 },
                 error=>{
+                    PubSub.publish('userdata', {err:error.message})
                 }
         )
     }
