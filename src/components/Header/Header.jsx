@@ -5,7 +5,9 @@ import './Header.css'
 
 export default class Header extends Component {
 
-    getData = ()=>{
+    getData = (event)=>{
+        const {keyCode} = event;
+        if(keyCode != 13) return ;
         const {inputButton:{value:keyword}} = this
         PubSub.publish('userdata', {isFirstTime:false, isLoading:true})
         axios({
@@ -31,7 +33,7 @@ export default class Header extends Component {
             <div className='search-container clearfix'>
                 <h2 className='title'>Search github users</h2>
                 <div className='search-area'>
-                    <input ref = {(inputButton)=>{this.inputButton = inputButton}}  type="text" placeholder='Please enter the username'/>
+                    <input onKeyUp={this.getData} ref = {(inputButton)=>{this.inputButton = inputButton}}  type="text" placeholder='Please enter the username'/>
                     <button onClick={this.getData}>Search</button>
                 </div>
             </div>
